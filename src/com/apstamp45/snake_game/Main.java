@@ -1,6 +1,7 @@
 package com.apstamp45.snake_game;
 
 import com.apstamp45.snake_game.event.KeyboardEventHandler;
+import com.apstamp45.snake_game.game.Apple;
 import com.apstamp45.snake_game.game.snake.Head;
 import com.apstamp45.snake_game.game.snake.Snake;
 import com.apstamp45.snake_game.graphics.Pixel;
@@ -61,6 +62,9 @@ public class Main {
      */
     private static Pixel[][] pixelArray = new Pixel[PIXEL_ARRAY_WIDTH][PIXEL_ARRAY_HEIGHT];
 
+    /** The apple. */
+    private static Apple apple;
+
     /** The snake. */
     private static Snake snake;
 
@@ -81,6 +85,7 @@ public class Main {
      */
     public static void start(String[] args) {
         snake = new Snake(0, 0, 1, 0, 2, new Pixel(0, 255, 0, false));
+        apple = new Apple(snake, PIXEL_ARRAY_WIDTH, PIXEL_ARRAY_HEIGHT, new Pixel(255, 0, 0, false));
     }
 
     /**
@@ -110,6 +115,7 @@ public class Main {
     /** Draws on the canvas. */
     private static void draw() {
         clearPixels();
+        apple.draw();
         snake.draw();
         Window.fill(DEFAULT_CANVAS_COLOR);
         for (int i = 0; i < pixelArray.length; i++) {
