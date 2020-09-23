@@ -56,12 +56,6 @@ public class Main {
     private static int framesPerMove = 10;
 
     /**
-     * Is used to make sure keys aren't
-     * pressed too fast.
-     */
-    private static long lastKeyPress;
-
-    /**
      * Array of Pixels to store all the
      * window "pixels".
      */
@@ -86,7 +80,6 @@ public class Main {
      * @param args Command line arguments.
      */
     public static void start(String[] args) {
-        KeyboardEventHandler.setOnKeyDown(() -> onKeyDown());
         snake = new Snake(0, 0, 1, 0, 2, new Pixel(0, 255, 0, false));
     }
 
@@ -97,6 +90,7 @@ public class Main {
      */
     public static void loop(String[] args) {
         if (currentFrame == framesPerMove) {
+            updateDirection();
             snake.move();
             draw();
             currentFrame = 0;
@@ -126,35 +120,35 @@ public class Main {
     }
 
     /**
+     * Updates the snake's direction
+     * depending on the last key pressed.
+     */
+    private static void updateDirection() {
+        if (KeyboardEventHandler.lastKeyPressed == KeyCode.UP) {
+            if (snake.head.getDirection() != Head.Direction.DOWN) {
+                snake.head.setDirection(Head.Direction.UP);
+            }
+        } else if (KeyboardEventHandler.lastKeyPressed == KeyCode.DOWN) {
+            if (snake.head.getDirection() != Head.Direction.UP) {
+                snake.head.setDirection(Head.Direction.DOWN);
+            }
+        } else if (KeyboardEventHandler.lastKeyPressed == KeyCode.RIGHT) {
+            if (snake.head.getDirection() != Head.Direction.LEFT) {
+                snake.head.setDirection(Head.Direction.RIGHT);
+            }
+        } else if (KeyboardEventHandler.lastKeyPressed == KeyCode.LEFT) {
+            if (snake.head.getDirection() != Head.Direction.RIGHT) {
+                snake.head.setDirection(Head.Direction.LEFT);
+            }
+        }
+    }
+
+    /**
      * Sets all of pixels in pixelArray to 
      * the default pixel. 
      */
     private static void clearPixels() {
         setPixelRect(0, 0, PIXEL_ARRAY_WIDTH, PIXEL_ARRAY_HEIGHT, DEFAULT_PIXEL_COLOR);
-    }
-
-    /** Executes when a key is pressed. */
-    private static void onKeyDown() {
-        if (System.currentTimeMillis() - lastKeyPress > 130) {
-            if (KeyboardEventHandler.lastKeyPressed == KeyCode.UP) {
-                if (snake.head.getDirection() != Head.Direction.DOWN) {
-                    snake.head.setDirection(Head.Direction.UP);
-                }
-            } else if (KeyboardEventHandler.lastKeyPressed == KeyCode.DOWN) {
-                if (snake.head.getDirection() != Head.Direction.UP) {
-                    snake.head.setDirection(Head.Direction.DOWN);
-                }
-            } else if (KeyboardEventHandler.lastKeyPressed == KeyCode.RIGHT) {
-                if (snake.head.getDirection() != Head.Direction.LEFT) {
-                    snake.head.setDirection(Head.Direction.RIGHT);
-                }
-            } else if (KeyboardEventHandler.lastKeyPressed == KeyCode.LEFT) {
-                if (snake.head.getDirection() != Head.Direction.RIGHT) {
-                    snake.head.setDirection(Head.Direction.LEFT);
-                }
-            }
-            lastKeyPress = System.currentTimeMillis();
-        }
     }
 
     /**
