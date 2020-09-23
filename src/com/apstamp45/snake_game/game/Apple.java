@@ -16,10 +16,10 @@ public class Apple {
     private Pixel color;
 
     /** The apple's x position. */
-    private int x;
+    public int x;
 
     /** The apple's y position. */
-    private int y;
+    public int y;
 
     /**
      * Creates an apple with a random

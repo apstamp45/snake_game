@@ -3,6 +3,7 @@ package com.apstamp45.snake_game.game.snake;
 import java.util.ArrayList;
 
 import com.apstamp45.snake_game.Main;
+import com.apstamp45.snake_game.game.Apple;
 import com.apstamp45.snake_game.graphics.Pixel;
 
 /**
@@ -47,6 +48,15 @@ public class Snake {
         } else {
             tail.add(new TailSegment(tail.get(tail.size() - 1)));
         }
+    }
+
+    /**
+     * Checks if the snake's head is touching the apple.
+     * @param apple The apple.
+     * @return If the snake has collided, true.
+     */
+    public boolean collidedWithApple(Apple apple) {
+        return head.x + head.xSpeed == apple.x && head.y + head.ySpeed == apple.y;
     }
 
     /** Draws the snake. */

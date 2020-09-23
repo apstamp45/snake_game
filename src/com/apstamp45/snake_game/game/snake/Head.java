@@ -10,10 +10,10 @@ public class Head extends Segment {
     public enum Direction {UP, DOWN, RIGHT, LEFT};
 
     /** The head's x speed. */
-    private int xSpeed;
+    int xSpeed;
 
     /** The head's y speed. */
-    private int ySpeed;
+    int ySpeed;
 
     public Head.Direction direction;
 

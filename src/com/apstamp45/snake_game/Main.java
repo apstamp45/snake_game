@@ -30,7 +30,7 @@ public class Main {
     private static final Pixel DEFAULT_CANVAS_COLOR = new Pixel(0, 0, 0, false);
 
     /** Default pixel color. */
-    private static final Pixel DEFAULT_PIXEL_COLOR = new Pixel(0, 0, 0, false);
+    private static final Pixel DEFAULT_PIXEL_COLOR = new Pixel(55, 55, 55, false);
 
     /** The pixel array's height. */
     public static final int PIXEL_ARRAY_HEIGHT = 50;
@@ -96,6 +96,10 @@ public class Main {
     public static void loop(String[] args) {
         if (currentFrame == framesPerMove) {
             updateDirection();
+            if (snake.collidedWithApple(apple)) {
+                snake.addSegment();
+                apple.getRandomPosition(PIXEL_ARRAY_WIDTH, PIXEL_ARRAY_HEIGHT, snake);
+            }
             snake.move();
             draw();
             currentFrame = 0;
