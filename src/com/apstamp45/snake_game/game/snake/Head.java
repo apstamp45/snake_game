@@ -6,11 +6,16 @@ package com.apstamp45.snake_game.game.snake;
  */
 public class Head extends Segment {
 
+    /** Contains all of the four main directions. */
+    public enum Direction {UP, DOWN, RIGHT, LEFT};
+
     /** The head's x speed. */
-    public int xSpeed;
+    private int xSpeed;
 
     /** The head's y speed. */
-    public int ySpeed;
+    private int ySpeed;
+
+    public Head.Direction direction;
 
     /**
      * Creates a snake's head.
@@ -24,6 +29,10 @@ public class Head extends Segment {
         this.y = y;
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
+    }
+
+    public Head.Direction getDirection() {
+        return direction;
     }
 
     /**
@@ -44,5 +53,26 @@ public class Head extends Segment {
         } else if (y >= canvasHeight) {
             y = 0;
         }
+    }
+
+    /**
+     * Sets the head's direction.
+     * @param direction The head's direction.
+     */
+    public void setDirection(Head.Direction direction) {
+        if (direction == Head.Direction.UP) {
+            this.xSpeed = 0;
+            this.ySpeed = -1;
+        } else if (direction == Head.Direction.DOWN) {
+            this.xSpeed = 0;
+            this.ySpeed = 1;
+        } else if (direction == Head.Direction.RIGHT) {
+            this.xSpeed = 1;
+            this.ySpeed = 0;
+        } else if (direction == Head.Direction.LEFT) {
+            this.xSpeed = -1;
+            this.ySpeed = 0;
+        }
+        this.direction = direction;
     }
 }

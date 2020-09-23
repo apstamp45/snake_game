@@ -1,6 +1,7 @@
 package com.apstamp45.snake_game;
 
 import com.apstamp45.snake_game.event.KeyboardEventHandler;
+import com.apstamp45.snake_game.game.snake.Head;
 import com.apstamp45.snake_game.game.snake.Snake;
 import com.apstamp45.snake_game.graphics.Pixel;
 
@@ -136,20 +137,20 @@ public class Main {
     private static void onKeyDown() {
         if (System.currentTimeMillis() - lastKeyPress > 130) {
             if (KeyboardEventHandler.lastKeyPressed == KeyCode.UP) {
-                if (snake.getDirection() != Snake.Direction.DOWN) {
-                    snake.setDirection(Snake.Direction.UP);
+                if (snake.head.getDirection() != Head.Direction.DOWN) {
+                    snake.head.setDirection(Head.Direction.UP);
                 }
             } else if (KeyboardEventHandler.lastKeyPressed == KeyCode.DOWN) {
-                if (snake.getDirection() != Snake.Direction.UP) {
-                    snake.setDirection(Snake.Direction.DOWN);
+                if (snake.head.getDirection() != Head.Direction.UP) {
+                    snake.head.setDirection(Head.Direction.DOWN);
                 }
             } else if (KeyboardEventHandler.lastKeyPressed == KeyCode.RIGHT) {
-                if (snake.getDirection() != Snake.Direction.LEFT) {
-                    snake.setDirection(Snake.Direction.RIGHT);
+                if (snake.head.getDirection() != Head.Direction.LEFT) {
+                    snake.head.setDirection(Head.Direction.RIGHT);
                 }
             } else if (KeyboardEventHandler.lastKeyPressed == KeyCode.LEFT) {
-                if (snake.getDirection() != Snake.Direction.RIGHT) {
-                    snake.setDirection(Snake.Direction.LEFT);
+                if (snake.head.getDirection() != Head.Direction.RIGHT) {
+                    snake.head.setDirection(Head.Direction.LEFT);
                 }
             }
             lastKeyPress = System.currentTimeMillis();

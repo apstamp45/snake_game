@@ -10,13 +10,12 @@ import com.apstamp45.snake_game.graphics.Pixel;
  * @author apstamp45
  */
 public class Snake {
-    public enum Direction {UP, DOWN, RIGHT, LEFT};
 
     /** The snake's color. */
     private Pixel color;
 
     /** The snake's head. */
-    private Head head;
+    public Head head;
 
     /** The snake's tail. */
     private ArrayList<TailSegment> tail;
@@ -58,52 +57,11 @@ public class Snake {
         }
     }
 
-    /**
-     * Gets the snake's head's direction.
-     * @return The snake's head's direction.
-     */
-    public Snake.Direction getDirection() {
-        if (head.xSpeed == 0 && head.ySpeed == -1) {
-            return Direction.UP;
-        } else if (head.xSpeed == 0 && head.ySpeed == 1) {
-            return Direction.DOWN;
-        } else if (head.xSpeed == 1 && head.ySpeed == 0) {
-            return Direction.RIGHT;
-        } else if (head.xSpeed == -1 && head.ySpeed == 0) {
-            return Direction.LEFT;
-        } else {
-            System.out.println("The snake's head's direction isn't valid.");
-            System.exit(1);
-        }
-        return null;
-    }
-
     /** Moves the snake. */
     public void move() {
         for (int i = tail.size() - 1; i >= 0; i--) {
             tail.get(i).move();
         }
         head.move(Main.PIXEL_ARRAY_WIDTH, Main.PIXEL_ARRAY_HEIGHT);
-    }
-
-    /**
-     * Sets the snake's head's position.
-     * @param xSpeed The x speed.
-     * @param ySpeed The y speed.
-     */
-    public void setDirection(Snake.Direction direction) {
-        if (direction == Snake.Direction.UP) {
-            head.xSpeed = 0;
-            head.ySpeed = -1;
-        } else if (direction == Snake.Direction.DOWN) {
-            head.xSpeed = 0;
-            head.ySpeed = 1;
-        } else if (direction == Snake.Direction.RIGHT) {
-            head.xSpeed = 1;
-            head.ySpeed = 0;
-        } else if (direction == Snake.Direction.LEFT) {
-            head.xSpeed = -1;
-            head.ySpeed = 0;
-        }
     }
 }
