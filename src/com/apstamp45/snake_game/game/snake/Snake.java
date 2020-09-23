@@ -59,6 +59,18 @@ public class Snake {
         return head.x + head.xSpeed == apple.x && head.y + head.ySpeed == apple.y;
     }
 
+    public boolean collidedWithTail() {
+        boolean collidedWithTail = false;
+        for (TailSegment tailSegment: tail) {
+            if (head.x + head.xSpeed == tailSegment.x &&
+                    head.y + head.ySpeed == tailSegment.y) {
+                collidedWithTail = true;
+                break;
+            }
+        }
+        return collidedWithTail;
+    }
+
     /** Draws the snake. */
     public void draw() {
         Main.setPixel(head.x, head.y, color);

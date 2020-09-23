@@ -96,6 +96,9 @@ public class Main {
     public static void loop(String[] args) {
         if (currentFrame == framesPerMove) {
             updateDirection();
+            if (snake.collidedWithTail()) {
+                System.exit(0);
+            }
             if (snake.collidedWithApple(apple)) {
                 snake.addSegment();
                 apple.getRandomPosition(PIXEL_ARRAY_WIDTH, PIXEL_ARRAY_HEIGHT, snake);
