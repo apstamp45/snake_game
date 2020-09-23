@@ -18,7 +18,7 @@ public class Snake {
     public Head head;
 
     /** The snake's tail. */
-    private ArrayList<TailSegment> tail;
+    public ArrayList<TailSegment> tail;
     
     /**
      * Creates a snake.
